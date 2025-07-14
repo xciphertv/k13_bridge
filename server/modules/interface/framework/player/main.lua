@@ -1,0 +1,2 @@
+---@class CServerFrameworkPlayer
+---@field private private {Raw: table}
