@@ -4,6 +4,7 @@
 ---@field getName fun(self: IServerFramework): Framework
 ---@field getRaw fun(self: IServerFramework): table
 ---@field getPlayerFromId fun(self:IServerFramework, src:number):IServerFrameworkPlayer?
+---@field getPlayerFromIdentifier fun(self:IServerFramework, identifier:string):IServerFrameworkPlayer?
 local IServerFramework = lib.class("IServerFramework")
 
 function IServerFramework:constructor(framework, Raw)
@@ -21,6 +22,10 @@ end
 
 function IServerFramework:getPlayerFromId(src)
 	error("Framework:getPlayerFromId is not implemented for this framework: " .. self:getName())
+end
+
+function IServerFramework:getPlayerFromIdentifier(identifier)
+	error("Framework:getPlayerFromIdentifier is not implemented for this framework: " .. self:getName())
 end
 
 return IServerFramework
