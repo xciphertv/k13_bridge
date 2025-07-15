@@ -16,9 +16,12 @@
 ---@field getLoadout fun(self:IServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:IServerFrameworkPlayer, weaponName:string):ILoadoutItem?
 ---@field addWeapon fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field removeWeapon fun(self:IServerFrameworkPlayer, weaponName:string)
 ---@field setWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field addWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field removeWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field setWeaponTintIndex fun(self:IServerFrameworkPlayer, weaponName:string, tintIndex:number)
+---@field getInventory fun(self:IServerFrameworkPlayer):IPlayerInventory
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
 function IServerFrameworkPlayer:constructor(Raw)
@@ -85,6 +88,10 @@ function IServerFrameworkPlayer:addWeapon(weaponName, ammo)
     error("IServerFrameworkPlayer:addWeapon is not implemented.")
 end
 
+function IServerFrameworkPlayer:removeWeapon(weaponName)
+    error("IServerFrameworkPlayer:removeWeapon is not implemented.")
+end
+
 function IServerFrameworkPlayer:setWeaponAmmo(weaponName, ammo)
     error("IServerFrameworkPlayer:setWeaponAmmo is not implemented.")
 end
@@ -93,8 +100,16 @@ function IServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)
     error("IServerFrameworkPlayer:addWeaponAmmo is not implemented.")
 end
 
+function IServerFrameworkPlayer:removeWeaponAmmo(weaponName, amount)
+    error("IServerFrameworkPlayer:removeWeaponAmmo is not implemented.")
+end
+
 function IServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
     error("IServerFrameworkPlayer:setWeaponTintIndex is not implemented.")
+end
+
+function IServerFrameworkPlayer:getInventory()
+    error("IServerFrameworkPlayer:getInventory is not implemented.")
 end
 
 return IServerFrameworkPlayer
@@ -111,3 +126,11 @@ return IServerFrameworkPlayer
 ---@field tintIndex number
 
 ---@alias IPlayerLoadout ILoadoutItem[]
+
+---@class IInventoryItem
+---@field name string
+---@field label string
+---@field count number
+---@field weight number
+
+---@alias IPlayerInventory IInventoryItem[]

@@ -14,9 +14,12 @@
 ---@field getLoadout fun(self:CESXServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string):ILoadoutItem?
 ---@field addWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field removeWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string)
 ---@field setWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field addWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field removeWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field setWeaponTintIndex fun(self:CESXServerFrameworkPlayer, weaponName:string, tintIndex:number)
+---@field getInventory fun(self:CESXServerFrameworkPlayer):IPlayerInventory
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -118,6 +121,10 @@ function CESXServerFrameworkPlayer:addWeapon(weaponName, ammo)
     self:getRaw().addWeapon(weaponName, ammo)
 end
 
+function CESXServerFrameworkPlayer:removeWeapon(weaponName)
+    self:getRaw().removeWeapon(weaponName)
+end
+
 function CESXServerFrameworkPlayer:setWeaponAmmo(weaponName, ammo)
     self:getRaw().updateWeaponAmmo(weaponName, ammo)
 end
@@ -126,8 +133,28 @@ function CESXServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)
     self:getRaw().addWeaponAmmo(weaponName, ammo)
 end
 
+function CESXServerFrameworkPlayer:removeWeaponAmmo(weaponName, amount)
+    self:getRaw().removeWeaponAmmo(weaponName, amount)
+end
+
 function CESXServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
     self:getRaw().setWeaponTint(weaponName, tintIndex)
+end
+
+function CESXServerFrameworkPlayer:getInventory()
+    local PlayerInventory = {} ---@type IPlayerInventory
+    local RawInventory = self:getRaw().getInventory(true)
+
+    for itemName, RawInventoryItem in pairs(RawInventory) do
+        PlayerInventory[#PlayerInventory + 1] = {
+            name = itemName,
+            label = RawInventoryItem.label,
+            count = RawInventoryItem.count,
+            weight = RawInventoryItem.weight,
+        }
+    end
+
+    return PlayerInventory
 end
 
 return CESXServerFrameworkPlayer
