@@ -11,6 +11,8 @@
 ---@field setAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, money:number)
 ---@field addAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, amount:number)
 ---@field removeAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, amount:number)
+---@field getGroup fun(self:CServerFrameworkPlayer):string
+---@field setGroup fun(self:CServerFrameworkPlayer, group:string)
 local CServerFrameworkPlayer = lib.class("CServerFrameworkPlayer")
 
 function CServerFrameworkPlayer:constructor(Raw)
@@ -55,6 +57,14 @@ end
 
 function CServerFrameworkPlayer:removeAccountMoney(accountName, amount)
     error("CServerFrameworkPlayer:removeAccountMoney is not implemented.")
+end
+
+function CServerFrameworkPlayer:getGroup()
+    error("CServerFrameworkPlayer:getGroup is not implemented.")
+end
+
+function CServerFrameworkPlayer:setGroup(group)
+    error("CServerFrameworkPlayer:setGroup is not implemented.")
 end
 
 return CServerFrameworkPlayer

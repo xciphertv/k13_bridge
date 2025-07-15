@@ -9,6 +9,8 @@
 ---@field setAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, money:number)
 ---@field addAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, amount:number)
 ---@field removeAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, amount:number)
+---@field getGroup fun(self:CESXServerFrameworkPlayer):string
+---@field setGroup fun(self:CESXServerFrameworkPlayer, group:string)
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -63,6 +65,14 @@ end
 
 function CESXServerFrameworkPlayer:removeAccountMoney(accountName, amount)
     self:getRaw().removeAccountMoney(accountName, amount)
+end
+
+function CESXServerFrameworkPlayer:getGroup()
+    return self:getRaw().getGroup()
+end
+
+function CESXServerFrameworkPlayer:setGroup(group)
+    self:getRaw().setGroup(group)
 end
 
 return CESXServerFrameworkPlayer

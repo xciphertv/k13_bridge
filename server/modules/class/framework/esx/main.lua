@@ -1,5 +1,6 @@
 ---@class CESXServerFramework:CServerFramework
 ---@field new fun(self: CESXServerFramework):CESXServerFramework
+---@field getPlayerFromId fun(self:CESXServerFramework, src:number):CESXServerFrameworkPlayer?
 local CESXServerFramework = lib.class("CESXServerFramework", require("server.modules.interface.framework.main"))
 
 function CESXServerFramework:constructor()

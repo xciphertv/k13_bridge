@@ -1,5 +1,5 @@
 ---@class CServerFramework:OxClass
----@field private private {Raw: table, framework:Framework}
+---@field private private {framework:Framework, Raw:table}
 ---@field new fun(self: CServerFramework, framework:Framework, Raw:table)
 ---@field getName fun(self: CServerFramework): Framework
 ---@field getRaw fun(self: CServerFramework): table
