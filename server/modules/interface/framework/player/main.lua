@@ -7,6 +7,8 @@
 ---@field setName fun(self:CServerFrameworkPlayer, name:string)
 ---@field getJob fun(self:CServerFrameworkPlayer):PlayerJob
 ---@field setJob fun(self:CServerFrameworkPlayer, name:string, gradeId:number)
+---@field getAccountMoney fun(self:CServerFrameworkPlayer, accountName:string):number
+---@field setAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, money:number)
 local CServerFrameworkPlayer = lib.class("CServerFrameworkPlayer")
 
 function CServerFrameworkPlayer:constructor(Raw)
@@ -35,6 +37,14 @@ end
 
 function CServerFrameworkPlayer:setJob(name, gradeId)
     error("CServerFrameworkPlayer:setJob is not implemented.")
+end
+
+function CServerFrameworkPlayer:getAccountMoney(accountName)
+    error("CServerFrameworkPlayer:getAccountMoney is not implemented.")
+end
+
+function CServerFrameworkPlayer:setAccountMoney(accountName, money)
+    error("CServerFrameworkPlayer:setAccountMoney is not implemented.")
 end
 
 return CServerFrameworkPlayer
