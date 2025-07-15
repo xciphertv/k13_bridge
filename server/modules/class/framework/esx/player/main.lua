@@ -12,6 +12,7 @@
 ---@field getGroup fun(self:CESXServerFrameworkPlayer):string
 ---@field setGroup fun(self:CESXServerFrameworkPlayer, group:string)
 ---@field getLoadout fun(self:CESXServerFrameworkPlayer):IPlayerLoadout
+---@field getWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string):ILoadoutItem?
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -92,6 +93,21 @@ function CESXServerFrameworkPlayer:getLoadout()
     end
 
     return PlayerLoadout
+end
+
+function CESXServerFrameworkPlayer:getWeapon(weaponName)
+    local RawWeapon = self:getRaw().getWeapon(weaponName)
+
+    if (not RawWeapon) then
+        return
+    end
+
+    return {
+        name = RawWeapon.name,
+        label = RawWeapon.label,
+        ammo = RawWeapon.ammo or 0,
+        tintIndex = RawWeapon.tintIndex or 0
+    } --[[@as ILoadoutItem]]
 end
 
 return CESXServerFrameworkPlayer
