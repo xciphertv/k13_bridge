@@ -1,5 +1,5 @@
 ---@class CESXServerFramework:CServerFramework
----@field constructor fun(self: CESXServerFramework):CESXServerFramework
+---@field new fun(self: CESXServerFramework):CESXServerFramework
 local CESXServerFramework = lib.class("CESXServerFramework", require("server.modules.interface.framework.main"))
 
 function CESXServerFramework:constructor()
@@ -8,6 +8,13 @@ function CESXServerFramework:constructor()
 	return self
 end
 
-return function()
-	return CESXServerFramework:new()
+function CESXServerFramework:getPlayerFromId(src)
+	local xPlayer = self:getRaw().GetPlayerFromId(src)
+	if (not xPlayer) then
+		return
+	end
+
+	require("server.modules.class.framework.esx.player.main"):new(xPlayer)
 end
+
+return CESXServerFramework

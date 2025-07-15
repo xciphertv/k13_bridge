@@ -11,7 +11,7 @@ return function(framework)
 		return FrameworkCache[framework]
 	end
 
-	FrameworkCache[framework] = require(("%s.modules.class.framework.%s.main"):format(context, framework))()
+	FrameworkCache[framework] = require(("%s.modules.class.framework.%s.main"):format(context, framework)):new()
 
 	return FrameworkCache[framework]
 end

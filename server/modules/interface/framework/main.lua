@@ -1,9 +1,9 @@
 ---@class CServerFramework:OxClass
 ---@field private private {Raw: table, framework:Framework}
----@field constructor fun(self: CServerFramework, framework:Framework, Raw:table)
+---@field new fun(self: CServerFramework, framework:Framework, Raw:table)
 ---@field getName fun(self: CServerFramework): Framework
 ---@field getRaw fun(self: CServerFramework): table
----@field getPlayerFromId fun(self:CServerFramework, src:number):CServerFrameworkPlayer
+---@field getPlayerFromId fun(self:CServerFramework, src:number):CServerFrameworkPlayer?
 local CServerFramework = lib.class("CServerFramework")
 
 function CServerFramework:constructor(framework, Raw)
