@@ -13,6 +13,7 @@
 ---@field removeAccountMoney fun(self:IServerFrameworkPlayer, accountName:string, amount:number)
 ---@field getGroup fun(self:IServerFrameworkPlayer):string
 ---@field setGroup fun(self:IServerFrameworkPlayer, group:string)
+---@field getLoadout fun(self:IServerFrameworkPlayer):IPlayerLoadout
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
 function IServerFrameworkPlayer:constructor(Raw)
@@ -67,9 +68,21 @@ function IServerFrameworkPlayer:setGroup(group)
     error("IServerFrameworkPlayer:setGroup is not implemented.")
 end
 
+function IServerFrameworkPlayer:getLoadout()
+    error("IServerFrameworkPlayer:getLoadout is not implemented.")
+end
+
 return IServerFrameworkPlayer
 
 ---@class IPlayerJob
 ---@field name string
 ---@field label string
 ---@field Grade {id:number, name:string, label:string, salary:number}
+
+---@class ILoadoutItem
+---@field name string
+---@field label string
+---@field ammo number
+---@field tintIndex number
+
+---@alias IPlayerLoadout ILoadoutItem[]

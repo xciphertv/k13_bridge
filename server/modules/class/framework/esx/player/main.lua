@@ -11,6 +11,7 @@
 ---@field removeAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, amount:number)
 ---@field getGroup fun(self:CESXServerFrameworkPlayer):string
 ---@field setGroup fun(self:CESXServerFrameworkPlayer, group:string)
+---@field getLoadout fun(self:CESXServerFrameworkPlayer):IPlayerLoadout
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -73,6 +74,24 @@ end
 
 function CESXServerFrameworkPlayer:setGroup(group)
     self:getRaw().setGroup(group)
+end
+
+function CESXServerFrameworkPlayer:getLoadout()
+    local PlayerLoadout = {} ---@type IPlayerLoadout
+    local RawLoadout = self:getRaw().getLoadout(false)
+
+    for i = 1, #RawLoadout do
+        local RawLoadoutItem = RawLoadout[i]
+
+        PlayerLoadout[i] = {
+            name = RawLoadoutItem.name,
+            label = RawLoadoutItem.label,
+            ammo = RawLoadoutItem.ammo or 0,
+            tintIndex = RawLoadoutItem.tintIndex or 0
+        }
+    end
+
+    return PlayerLoadout
 end
 
 return CESXServerFrameworkPlayer
