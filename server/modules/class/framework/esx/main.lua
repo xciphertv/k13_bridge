@@ -2,6 +2,8 @@
 ---@field new fun(self: CESXServerFramework):CESXServerFramework
 ---@field getPlayerFromId fun(self:CESXServerFramework, src:number):CESXServerFrameworkPlayer?
 ---@field getPlayerFromIdentifier fun(self:CESXServerFramework, identifier:string):CESXServerFrameworkPlayer?
+---@field registerUsableItem fun(self:CESXServerFramework, itemName:string, cb:fun(src:number))
+---@field getItemLabel fun(self:CESXServerFramework, itemName:string):string?
 local CESXServerFramework = lib.class("CESXServerFramework", require("server.modules.interface.framework.main"))
 
 function CESXServerFramework:constructor()
@@ -26,6 +28,16 @@ function CESXServerFramework:getPlayerFromIdentifier(identifier)
 	end
 
 	require("server.modules.class.framework.esx.player.main"):new(xPlayer)
+end
+
+function CESXServerFramework:registerUsableItem(itemName, cb)
+	self:getRaw().RegisterUsableItem(itemName, function(src)
+		cb(src)
+	end)
+end
+
+function CESXServerFramework:getItemLabel(itemName)
+	return self:getRaw().GetItemLabel(itemName)
 end
 
 return CESXServerFramework
