@@ -1,4 +1,5 @@
 ---@class CESXServerFramework:IServerFramework
+---@field super fun(self:CESXServerFramework, framework:Framework, Raw:table)
 ---@field new fun(self: CESXServerFramework):CESXServerFramework
 ---@field getPlayerFromId fun(self:CESXServerFramework, src:number):CESXServerFrameworkPlayer?
 ---@field getPlayerFromIdentifier fun(self:CESXServerFramework, identifier:string):CESXServerFrameworkPlayer?

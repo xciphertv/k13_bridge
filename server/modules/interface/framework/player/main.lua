@@ -19,7 +19,7 @@
 ---@field addWeapon fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field removeWeapon fun(self:IServerFrameworkPlayer, weaponName:string)
 ---@field setWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
----@field addWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field addWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field removeWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field setWeaponTintIndex fun(self:IServerFrameworkPlayer, weaponName:string, tintIndex:number)
 ---@field getInventory fun(self:IServerFrameworkPlayer):IPlayerInventory
@@ -98,7 +98,7 @@ function IServerFrameworkPlayer:hasWeapon(weaponName)
     error("IServerFrameworkPlayer:hasWeapon is not implemented.")
 end
 
-function IServerFrameworkPlayer:addWeapon(weaponName, ammo)
+function IServerFrameworkPlayer:addWeapon(weaponName, amount)
     error("IServerFrameworkPlayer:addWeapon is not implemented.")
 end
 

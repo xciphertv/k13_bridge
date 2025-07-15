@@ -1,4 +1,5 @@
 ---@class CESXServerFrameworkPlayer:IServerFrameworkPlayer
+---@field super fun(self:CESXServerFrameworkPlayer, Raw:table)
 ---@field new fun(self: CESXServerFrameworkPlayer, Raw:table):CESXServerFrameworkPlayer
 ---@field getIdentifier fun(self:CESXServerFrameworkPlayer):string
 ---@field getName fun(self:CESXServerFrameworkPlayer):string
@@ -17,7 +18,7 @@
 ---@field addWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field removeWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string)
 ---@field setWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
----@field addWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field addWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field removeWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field setWeaponTintIndex fun(self:CESXServerFrameworkPlayer, weaponName:string, tintIndex:number)
 ---@field getInventory fun(self:CESXServerFrameworkPlayer):IPlayerInventory
@@ -143,8 +144,8 @@ function CESXServerFrameworkPlayer:setWeaponAmmo(weaponName, ammo)
     self:getRaw().updateWeaponAmmo(weaponName, ammo)
 end
 
-function CESXServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)
-    self:getRaw().addWeaponAmmo(weaponName, ammo)
+function CESXServerFrameworkPlayer:addWeaponAmmo(weaponName, amount)
+    self:getRaw().addWeaponAmmo(weaponName, amount)
 end
 
 function CESXServerFrameworkPlayer:removeWeaponAmmo(weaponName, amount)
