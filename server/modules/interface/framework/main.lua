@@ -6,6 +6,7 @@
 ---@field getPlayerFromId fun(self:IServerFramework, src:number):IServerFrameworkPlayer?
 ---@field getPlayerFromIdentifier fun(self:IServerFramework, identifier:string):IServerFrameworkPlayer?
 ---@field registerUsableItem fun(self:IServerFramework, itemName:string, cb:fun(src:number))
+---@field getItems fun(self:IServerFramework): IItem[]
 ---@field getItemLabel fun(self:IServerFramework, itemName:string):string?
 local IServerFramework = lib.class("IServerFramework")
 
@@ -34,8 +35,17 @@ function IServerFramework:registerUsableItem(itemName, cb)
 	error("Framework:registerUsableItem is not implemented for this framework: " .. self:getName())
 end
 
+function IServerFramework:getItems()
+	error("Framework:getItems is not implemented for this framework: " .. self:getName())
+end
+
 function IServerFramework:getItemLabel(itemName)
 	error("Framework:getItemLabel is not implemented for this framework: " .. self:getName())
 end
 
 return IServerFramework
+
+---@class IItem
+---@field name string
+---@field label string
+---@field weight number

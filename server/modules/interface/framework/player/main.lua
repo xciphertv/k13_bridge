@@ -177,10 +177,7 @@ return IServerFrameworkPlayer
 
 ---@alias IPlayerLoadout ILoadoutItem[]
 
----@class IInventoryItem
----@field name string
----@field label string
+---@class IInventoryItem:IItem
 ---@field count number
----@field weight number
 
 ---@alias IPlayerInventory IInventoryItem[]
