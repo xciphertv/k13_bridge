@@ -16,6 +16,7 @@
 ---@field addWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field setWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field addWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field setWeaponTintIndex fun(self:CESXServerFrameworkPlayer, weaponName:string, tintIndex:number)
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -123,6 +124,10 @@ end
 
 function CESXServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)
     self:getRaw().addWeaponAmmo(weaponName, ammo)
+end
+
+function CESXServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
+    self:getRaw().setWeaponTint(weaponName, tintIndex)
 end
 
 return CESXServerFrameworkPlayer

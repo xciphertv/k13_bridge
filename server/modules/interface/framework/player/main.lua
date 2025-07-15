@@ -18,6 +18,7 @@
 ---@field addWeapon fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field setWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field addWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field setWeaponTintIndex fun(self:IServerFrameworkPlayer, weaponName:string, tintIndex:number)
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
 function IServerFrameworkPlayer:constructor(Raw)
@@ -90,6 +91,10 @@ end
 
 function IServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)
     error("IServerFrameworkPlayer:addWeaponAmmo is not implemented.")
+end
+
+function IServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
+    error("IServerFrameworkPlayer:setWeaponTintIndex is not implemented.")
 end
 
 return IServerFrameworkPlayer
