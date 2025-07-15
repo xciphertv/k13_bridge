@@ -1,26 +1,26 @@
----@class CServerFramework:OxClass
+---@class IServerFramework:OxClass
 ---@field private private {framework:Framework, Raw:table}
----@field new fun(self: CServerFramework, framework:Framework, Raw:table)
----@field getName fun(self: CServerFramework): Framework
----@field getRaw fun(self: CServerFramework): table
----@field getPlayerFromId fun(self:CServerFramework, src:number):CServerFrameworkPlayer?
-local CServerFramework = lib.class("CServerFramework")
+---@field new fun(self: IServerFramework, framework:Framework, Raw:table)
+---@field getName fun(self: IServerFramework): Framework
+---@field getRaw fun(self: IServerFramework): table
+---@field getPlayerFromId fun(self:IServerFramework, src:number):IServerFrameworkPlayer?
+local IServerFramework = lib.class("IServerFramework")
 
-function CServerFramework:constructor(framework, Raw)
+function IServerFramework:constructor(framework, Raw)
 	self.private.framework = framework
 	self.private.Raw = Raw or {}
 end
 
-function CServerFramework:getName()
+function IServerFramework:getName()
 	return self.private.framework
 end
 
-function CServerFramework:getRaw()
+function IServerFramework:getRaw()
 	return self.private.Raw
 end
 
-function CServerFramework:getPlayerFromId(src)
+function IServerFramework:getPlayerFromId(src)
 	error("Framework:getPlayerFromId is not implemented for this framework: " .. self:getName())
 end
 
-return CServerFramework
+return IServerFramework

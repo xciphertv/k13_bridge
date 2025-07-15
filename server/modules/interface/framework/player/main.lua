@@ -1,75 +1,75 @@
----@class CServerFrameworkPlayer:OxClass
+---@class IServerFrameworkPlayer:OxClass
 ---@field private private {Raw: table}
----@field new fun(self: CServerFrameworkPlayer, Raw:table)
----@field getRaw fun(self:CServerFrameworkPlayer):table
----@field getIdentifier fun(self:CServerFrameworkPlayer):string
----@field getName fun(self:CServerFrameworkPlayer):string
----@field setName fun(self:CServerFrameworkPlayer, name:string)
----@field getJob fun(self:CServerFrameworkPlayer):PlayerJob
----@field setJob fun(self:CServerFrameworkPlayer, name:string, gradeId:number)
----@field getAccountMoney fun(self:CServerFrameworkPlayer, accountName:string):number
----@field setAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, money:number)
----@field addAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, amount:number)
----@field removeAccountMoney fun(self:CServerFrameworkPlayer, accountName:string, amount:number)
----@field getGroup fun(self:CServerFrameworkPlayer):string
----@field setGroup fun(self:CServerFrameworkPlayer, group:string)
-local CServerFrameworkPlayer = lib.class("CServerFrameworkPlayer")
+---@field new fun(self: IServerFrameworkPlayer, Raw:table)
+---@field getRaw fun(self:IServerFrameworkPlayer):table
+---@field getIdentifier fun(self:IServerFrameworkPlayer):string
+---@field getName fun(self:IServerFrameworkPlayer):string
+---@field setName fun(self:IServerFrameworkPlayer, name:string)
+---@field getJob fun(self:IServerFrameworkPlayer):IPlayerJob
+---@field setJob fun(self:IServerFrameworkPlayer, name:string, gradeId:number)
+---@field getAccountMoney fun(self:IServerFrameworkPlayer, accountName:string):number
+---@field setAccountMoney fun(self:IServerFrameworkPlayer, accountName:string, money:number)
+---@field addAccountMoney fun(self:IServerFrameworkPlayer, accountName:string, amount:number)
+---@field removeAccountMoney fun(self:IServerFrameworkPlayer, accountName:string, amount:number)
+---@field getGroup fun(self:IServerFrameworkPlayer):string
+---@field setGroup fun(self:IServerFrameworkPlayer, group:string)
+local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
-function CServerFrameworkPlayer:constructor(Raw)
+function IServerFrameworkPlayer:constructor(Raw)
     self.private.Raw = Raw or {}
 end
 
-function CServerFrameworkPlayer:getRaw()
+function IServerFrameworkPlayer:getRaw()
     return self.private.Raw
 end
 
-function CServerFrameworkPlayer:getIdentifier()
-    error("CServerFrameworkPlayer:getIdentifier is not implemented.")
+function IServerFrameworkPlayer:getIdentifier()
+    error("IServerFrameworkPlayer:getIdentifier is not implemented.")
 end
 
-function CServerFrameworkPlayer:getName()
-    error("CServerFrameworkPlayer:getName is not implemented.")
+function IServerFrameworkPlayer:getName()
+    error("IServerFrameworkPlayer:getName is not implemented.")
 end
 
-function CServerFrameworkPlayer:setName(name)
-    error("CServerFrameworkPlayer:setName is not implemented.")
+function IServerFrameworkPlayer:setName(name)
+    error("IServerFrameworkPlayer:setName is not implemented.")
 end
 
-function CServerFrameworkPlayer:getJob()
-    error("CServerFrameworkPlayer:getJob is not implemented.")
+function IServerFrameworkPlayer:getJob()
+    error("IServerFrameworkPlayer:getJob is not implemented.")
 end
 
-function CServerFrameworkPlayer:setJob(name, gradeId)
-    error("CServerFrameworkPlayer:setJob is not implemented.")
+function IServerFrameworkPlayer:setJob(name, gradeId)
+    error("IServerFrameworkPlayer:setJob is not implemented.")
 end
 
-function CServerFrameworkPlayer:getAccountMoney(accountName)
-    error("CServerFrameworkPlayer:getAccountMoney is not implemented.")
+function IServerFrameworkPlayer:getAccountMoney(accountName)
+    error("IServerFrameworkPlayer:getAccountMoney is not implemented.")
 end
 
-function CServerFrameworkPlayer:setAccountMoney(accountName, money)
-    error("CServerFrameworkPlayer:setAccountMoney is not implemented.")
+function IServerFrameworkPlayer:setAccountMoney(accountName, money)
+    error("IServerFrameworkPlayer:setAccountMoney is not implemented.")
 end
 
-function CServerFrameworkPlayer:addAccountMoney(accountName, amount)
-    error("CServerFrameworkPlayer:addAccountMoney is not implemented.")
+function IServerFrameworkPlayer:addAccountMoney(accountName, amount)
+    error("IServerFrameworkPlayer:addAccountMoney is not implemented.")
 end
 
-function CServerFrameworkPlayer:removeAccountMoney(accountName, amount)
-    error("CServerFrameworkPlayer:removeAccountMoney is not implemented.")
+function IServerFrameworkPlayer:removeAccountMoney(accountName, amount)
+    error("IServerFrameworkPlayer:removeAccountMoney is not implemented.")
 end
 
-function CServerFrameworkPlayer:getGroup()
-    error("CServerFrameworkPlayer:getGroup is not implemented.")
+function IServerFrameworkPlayer:getGroup()
+    error("IServerFrameworkPlayer:getGroup is not implemented.")
 end
 
-function CServerFrameworkPlayer:setGroup(group)
-    error("CServerFrameworkPlayer:setGroup is not implemented.")
+function IServerFrameworkPlayer:setGroup(group)
+    error("IServerFrameworkPlayer:setGroup is not implemented.")
 end
 
-return CServerFrameworkPlayer
+return IServerFrameworkPlayer
 
----@class PlayerJob
+---@class IPlayerJob
 ---@field name string
 ---@field label string
 ---@field Grade {id:number, name:string, label:string, salary:number}

@@ -1,9 +1,9 @@
----@class CESXServerFrameworkPlayer:CServerFrameworkPlayer
+---@class CESXServerFrameworkPlayer:IServerFrameworkPlayer
 ---@field new fun(self: CESXServerFrameworkPlayer, Raw:table):CESXServerFrameworkPlayer
 ---@field getIdentifier fun(self:CESXServerFrameworkPlayer):string
 ---@field getName fun(self:CESXServerFrameworkPlayer):string
 ---@field setName fun(self:CESXServerFrameworkPlayer, name:string)
----@field getJob fun(self:CESXServerFrameworkPlayer):PlayerJob
+---@field getJob fun(self:CESXServerFrameworkPlayer):IPlayerJob
 ---@field setJob fun(self:CESXServerFrameworkPlayer, name:string, gradeId:number)
 ---@field getAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string):number
 ---@field setAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, money:number)
@@ -44,7 +44,7 @@ function CESXServerFrameworkPlayer:getJob()
             label = Job.grade_label,
             salary = tonumber(Job.grade_salary) or 0
         }
-    } --[[@as PlayerJob]]
+    } --[[@as IPlayerJob]]
 end
 
 function CESXServerFrameworkPlayer:setJob(name, gradeId)
