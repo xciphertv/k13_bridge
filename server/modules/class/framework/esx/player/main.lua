@@ -13,6 +13,7 @@
 ---@field setGroup fun(self:CESXServerFrameworkPlayer, group:string)
 ---@field getLoadout fun(self:CESXServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string):ILoadoutItem?
+---@field hasWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string):boolean
 ---@field addWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field removeWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string)
 ---@field setWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
@@ -20,6 +21,15 @@
 ---@field removeWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field setWeaponTintIndex fun(self:CESXServerFrameworkPlayer, weaponName:string, tintIndex:number)
 ---@field getInventory fun(self:CESXServerFrameworkPlayer):IPlayerInventory
+---@field getInventoryItem fun(self:CESXServerFrameworkPlayer, itemName:string):IInventoryItem?
+---@field addInventoryItem fun(self:CESXServerFrameworkPlayer, itemName:string, amount:number)
+---@field removeInventoryItem fun(self:CESXServerFrameworkPlayer, itemName:string, amount:number)
+---@field setInventoryItemCount fun(self:CESXServerFrameworkPlayer, itemName:string, count:number)
+---@field hasItem fun(self:CESXServerFrameworkPlayer, itemName:string):boolean
+---@field getWeight fun(self:CESXServerFrameworkPlayer):number
+---@field getMaxWeight fun(self:CESXServerFrameworkPlayer):number
+---@field setMaxWeight fun(self:CESXServerFrameworkPlayer, weight:number)
+---@field canCarryItem fun(self:CESXServerFrameworkPlayer, itemName:string, count:number):boolean
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -117,6 +127,10 @@ function CESXServerFrameworkPlayer:getWeapon(weaponName)
     } --[[@as ILoadoutItem]]
 end
 
+function CESXServerFrameworkPlayer:hasWeapon(weaponName)
+    return self:getRaw().hasWeapon(weaponName)
+end
+
 function CESXServerFrameworkPlayer:addWeapon(weaponName, ammo)
     self:getRaw().addWeapon(weaponName, ammo)
 end
@@ -155,6 +169,53 @@ function CESXServerFrameworkPlayer:getInventory()
     end
 
     return PlayerInventory
+end
+
+function CESXServerFrameworkPlayer:getInventoryItem(itemName)
+    local RawInventoryItem = self:getRaw().getInventoryItem(itemName)
+
+    if (not RawInventoryItem) then
+        return
+    end
+
+    return {
+        name = itemName,
+        label = RawInventoryItem.label,
+        count = RawInventoryItem.count,
+        weight = RawInventoryItem.weight,
+    } --[[@as IInventoryItem]]
+end
+
+function CESXServerFrameworkPlayer:addInventoryItem(itemName, amount)
+    self:getRaw().addInventoryItem(itemName, amount)
+end
+
+function CESXServerFrameworkPlayer:removeInventoryItem(itemName, amount)
+    self:getRaw().removeInventoryItem(itemName, amount)
+end
+
+function CESXServerFrameworkPlayer:setInventoryItemCount(itemName, count)
+    self:getRaw().setInventoryItem(itemName, count)
+end
+
+function CESXServerFrameworkPlayer:hasItem(itemName)
+    return self:getRaw().hasItem(itemName)
+end
+
+function CESXServerFrameworkPlayer:getWeight()
+    return self:getRaw().getWeight()
+end
+
+function CESXServerFrameworkPlayer:getMaxWeight()
+    return self:getRaw().getMaxWeight()
+end
+
+function CESXServerFrameworkPlayer:setMaxWeight(weight)
+    self:getRaw().setMaxWeight(weight)
+end
+
+function CESXServerFrameworkPlayer:canCarryItem(itemName, count)
+    return self:getRaw().canCarryItem(itemName, count)
 end
 
 return CESXServerFrameworkPlayer

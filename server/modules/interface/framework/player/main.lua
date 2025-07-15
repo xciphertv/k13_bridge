@@ -15,6 +15,7 @@
 ---@field setGroup fun(self:IServerFrameworkPlayer, group:string)
 ---@field getLoadout fun(self:IServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:IServerFrameworkPlayer, weaponName:string):ILoadoutItem?
+---@field hasWeapon fun(self:IServerFrameworkPlayer, weaponName:string):boolean
 ---@field addWeapon fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field removeWeapon fun(self:IServerFrameworkPlayer, weaponName:string)
 ---@field setWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
@@ -22,6 +23,15 @@
 ---@field removeWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, amount:number)
 ---@field setWeaponTintIndex fun(self:IServerFrameworkPlayer, weaponName:string, tintIndex:number)
 ---@field getInventory fun(self:IServerFrameworkPlayer):IPlayerInventory
+---@field getInventoryItem fun(self:IServerFrameworkPlayer, itemName:string):IInventoryItem?
+---@field addInventoryItem fun(self:IServerFrameworkPlayer, itemName:string, amount:number)
+---@field removeInventoryItem fun(self:IServerFrameworkPlayer, itemName:string, amount:number)
+---@field setInventoryItemCount fun(self:IServerFrameworkPlayer, itemName:string, count:number)
+---@field hasItem fun(self:IServerFrameworkPlayer, itemName:string):boolean
+---@field getWeight fun(self:IServerFrameworkPlayer):number
+---@field getMaxWeight fun(self:IServerFrameworkPlayer):number
+---@field setMaxWeight fun(self:IServerFrameworkPlayer, weight:number)
+---@field canCarryItem fun(self:IServerFrameworkPlayer, itemName:string, count:number):boolean
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
 function IServerFrameworkPlayer:constructor(Raw)
@@ -84,6 +94,10 @@ function IServerFrameworkPlayer:getWeapon(weaponName)
     error("IServerFrameworkPlayer:getWeapon is not implemented.")
 end
 
+function IServerFrameworkPlayer:hasWeapon(weaponName)
+    error("IServerFrameworkPlayer:hasWeapon is not implemented.")
+end
+
 function IServerFrameworkPlayer:addWeapon(weaponName, ammo)
     error("IServerFrameworkPlayer:addWeapon is not implemented.")
 end
@@ -110,6 +124,42 @@ end
 
 function IServerFrameworkPlayer:getInventory()
     error("IServerFrameworkPlayer:getInventory is not implemented.")
+end
+
+function IServerFrameworkPlayer:getInventoryItem(itemName)
+    error("IServerFrameworkPlayer:getInventoryItem is not implemented.")
+end
+
+function IServerFrameworkPlayer:addInventoryItem(itemName, amount)
+    error("IServerFrameworkPlayer:addInventoryItem is not implemented.")
+end
+
+function IServerFrameworkPlayer:removeInventoryItem(itemName, amount)
+    error("IServerFrameworkPlayer:removeInventoryItem is not implemented.")
+end
+
+function IServerFrameworkPlayer:setInventoryItemCount(itemName, count)
+    error("IServerFrameworkPlayer:setInventoryItemCount is not implemented.")
+end
+
+function IServerFrameworkPlayer:hasItem(itemName)
+    error("IServerFrameworkPlayer:hasItem is not implemented.")
+end
+
+function IServerFrameworkPlayer:getWeight()
+    error("IServerFrameworkPlayer:getWeight is not implemented.")
+end
+
+function IServerFrameworkPlayer:getMaxWeight()
+    error("IServerFrameworkPlayer:getMaxWeight is not implemented.")
+end
+
+function IServerFrameworkPlayer:setMaxWeight(weight)
+    error("IServerFrameworkPlayer:setMaxWeight is not implemented.")
+end
+
+function IServerFrameworkPlayer:canCarryItem(itemName, count)
+    error("IServerFrameworkPlayer:canCarryItem is not implemented.")
 end
 
 return IServerFrameworkPlayer
