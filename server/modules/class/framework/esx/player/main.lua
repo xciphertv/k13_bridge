@@ -14,6 +14,7 @@
 ---@field getLoadout fun(self:CESXServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string):ILoadoutItem?
 ---@field addWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field setWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field addWeaponAmmo fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
@@ -114,6 +115,10 @@ end
 
 function CESXServerFrameworkPlayer:addWeapon(weaponName, ammo)
     self:getRaw().addWeapon(weaponName, ammo)
+end
+
+function CESXServerFrameworkPlayer:setWeaponAmmo(weaponName, ammo)
+    self:getRaw().updateWeaponAmmo(weaponName, ammo)
 end
 
 function CESXServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)

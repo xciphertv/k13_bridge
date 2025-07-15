@@ -16,6 +16,7 @@
 ---@field getLoadout fun(self:IServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:IServerFrameworkPlayer, weaponName:string):ILoadoutItem?
 ---@field addWeapon fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
+---@field setWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 ---@field addWeaponAmmo fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
@@ -81,6 +82,10 @@ end
 
 function IServerFrameworkPlayer:addWeapon(weaponName, ammo)
     error("IServerFrameworkPlayer:addWeapon is not implemented.")
+end
+
+function IServerFrameworkPlayer:setWeaponAmmo(weaponName, ammo)
+    error("IServerFrameworkPlayer:setWeaponAmmo is not implemented.")
 end
 
 function IServerFrameworkPlayer:addWeaponAmmo(weaponName, ammo)
