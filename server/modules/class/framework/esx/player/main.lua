@@ -13,6 +13,7 @@
 ---@field setGroup fun(self:CESXServerFrameworkPlayer, group:string)
 ---@field getLoadout fun(self:CESXServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string):ILoadoutItem?
+---@field addWeapon fun(self:CESXServerFrameworkPlayer, weaponName:string, ammo:number)
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -108,6 +109,10 @@ function CESXServerFrameworkPlayer:getWeapon(weaponName)
         ammo = RawWeapon.ammo or 0,
         tintIndex = RawWeapon.tintIndex or 0
     } --[[@as ILoadoutItem]]
+end
+
+function CESXServerFrameworkPlayer:addWeapon(weaponName, ammo)
+    self:getRaw().addWeapon(weaponName, ammo)
 end
 
 return CESXServerFrameworkPlayer

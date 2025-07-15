@@ -15,6 +15,7 @@
 ---@field setGroup fun(self:IServerFrameworkPlayer, group:string)
 ---@field getLoadout fun(self:IServerFrameworkPlayer):IPlayerLoadout
 ---@field getWeapon fun(self:IServerFrameworkPlayer, weaponName:string):ILoadoutItem?
+---@field addWeapon fun(self:IServerFrameworkPlayer, weaponName:string, ammo:number)
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
 function IServerFrameworkPlayer:constructor(Raw)
@@ -75,6 +76,10 @@ end
 
 function IServerFrameworkPlayer:getWeapon(weaponName)
     error("IServerFrameworkPlayer:getWeapon is not implemented.")
+end
+
+function IServerFrameworkPlayer:addWeapon(weaponName, ammo)
+    error("IServerFrameworkPlayer:addWeapon is not implemented.")
 end
 
 return IServerFrameworkPlayer
