@@ -7,6 +7,8 @@
 ---@field setJob fun(self:CESXServerFrameworkPlayer, name:string, gradeId:number)
 ---@field getAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string):number
 ---@field setAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, money:number)
+---@field addAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, amount:number)
+---@field removeAccountMoney fun(self:CESXServerFrameworkPlayer, accountName:string, amount:number)
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -53,6 +55,14 @@ end
 
 function CESXServerFrameworkPlayer:setAccountMoney(accountName, money)
     self:getRaw().setAccountMoney(accountName, money)
+end
+
+function CESXServerFrameworkPlayer:addAccountMoney(accountName, amount)
+    self:getRaw().addAccountMoney(accountName, amount)
+end
+
+function CESXServerFrameworkPlayer:removeAccountMoney(accountName, amount)
+    self:getRaw().removeAccountMoney(accountName, amount)
 end
 
 return CESXServerFrameworkPlayer
