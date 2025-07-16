@@ -53,16 +53,16 @@ function CESXServerFrameworkPlayer:setName(name)
 end
 
 function CESXServerFrameworkPlayer:getJob()
-    local Job = self:getRaw().getJob()
+    local RawJob = self:getRaw().getJob()
 
     return {
-        name = Job.name,
-        label = Job.label,
+        name = RawJob.name,
+        label = RawJob.label,
         Grade = {
-            id = Job.grade,
-            name = Job.grade_name,
-            label = Job.grade_label,
-            salary = tonumber(Job.grade_salary) or 0
+            id = RawJob.grade,
+            name = RawJob.grade_name,
+            label = RawJob.grade_label,
+            salary = tonumber(RawJob.grade_salary) or 0
         }
     } --[[@as IPlayerJob]]
 end
