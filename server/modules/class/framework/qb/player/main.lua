@@ -49,6 +49,15 @@ function CQBServerFrameworkPlayer:getName()
 end
 
 function CQBServerFrameworkPlayer:setName(name)
+    local firstName, lastName = name:match("^(%S+)%s+(%S+)$") ---@type string?, string?
+
+    if (not firstName or not lastName) then
+        return
+    end
+
+    self:getRaw().PlayerData.charinfo.firstname = firstName
+    self:getRaw().PlayerData.charinfo.lastname = lastName
+    self:getRaw().Functions.UpdatePlayerData(false)
 end
 
 function CQBServerFrameworkPlayer:getJob()
@@ -87,9 +96,11 @@ function CQBServerFrameworkPlayer:removeAccountMoney(accountName, amount)
 end
 
 function CQBServerFrameworkPlayer:getGroup()
+    error("TO BE IMPLEMENTED")
 end
 
 function CQBServerFrameworkPlayer:setGroup(group)
+    error("TO BE IMPLEMENTED")
 end
 
 function CQBServerFrameworkPlayer:getLoadout()
@@ -169,6 +180,7 @@ function CQBServerFrameworkPlayer:removeWeaponAmmo(weaponName, amount)
 end
 
 function CQBServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
+    error("TO BE IMPLEMENTED")
 end
 
 function CQBServerFrameworkPlayer:getInventory()
@@ -232,9 +244,11 @@ function CQBServerFrameworkPlayer:getWeight()
 end
 
 function CQBServerFrameworkPlayer:getMaxWeight()
+    error("TO BE IMPLEMENTED")
 end
 
 function CQBServerFrameworkPlayer:setMaxWeight(weight)
+    error("TO BE IMPLEMENTED")
 end
 
 function CQBServerFrameworkPlayer:canCarryItem(itemName, count)
