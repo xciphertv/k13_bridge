@@ -20,7 +20,7 @@ function CESXServerFramework:getPlayerFromId(src)
 		return
 	end
 
-	require("server.modules.class.framework.esx.player.main"):new(xPlayer)
+	return require("server.modules.class.framework.esx.player.main"):new(xPlayer)
 end
 
 function CESXServerFramework:getPlayerFromIdentifier(identifier)
@@ -29,7 +29,7 @@ function CESXServerFramework:getPlayerFromIdentifier(identifier)
 		return
 	end
 
-	require("server.modules.class.framework.esx.player.main"):new(xPlayer)
+	return require("server.modules.class.framework.esx.player.main"):new(xPlayer)
 end
 
 function CESXServerFramework:registerUsableItem(itemName, cb)

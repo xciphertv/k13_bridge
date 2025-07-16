@@ -20,7 +20,7 @@ function CQBServerFramework:getPlayerFromId(src)
         return
     end
 
-    require("server.modules.class.framework.qb.player.main"):new(xPlayer)
+    return require("server.modules.class.framework.qb.player.main"):new(xPlayer)
 end
 
 function CQBServerFramework:getPlayerFromIdentifier(identifier)
@@ -29,7 +29,7 @@ function CQBServerFramework:getPlayerFromIdentifier(identifier)
         return
     end
 
-    require("server.modules.class.framework.qb.player.main"):new(xPlayer)
+    return require("server.modules.class.framework.qb.player.main"):new(xPlayer)
 end
 
 function CQBServerFramework:registerUsableItem(itemName, cb)
