@@ -55,9 +55,10 @@ function CQBServerFrameworkPlayer:setName(name)
         return
     end
 
-    self:getRaw().PlayerData.charinfo.firstname = firstName
-    self:getRaw().PlayerData.charinfo.lastname = lastName
-    self:getRaw().Functions.UpdatePlayerData(false)
+    local RawFrameworkPlayer = self:getRaw()
+    RawFrameworkPlayer.PlayerData.charinfo.firstname = firstName
+    RawFrameworkPlayer.PlayerData.charinfo.lastname = lastName
+    RawFrameworkPlayer.Functions.UpdatePlayerData(false)
 end
 
 function CQBServerFrameworkPlayer:getJob()
@@ -153,8 +154,9 @@ function CQBServerFrameworkPlayer:setWeaponAmmo(weaponName, ammo)
         return
     end
 
-    self:getRaw().PlayerData.items[RawInventoryItem.slot].info.ammo = ammo
-    self:getRaw().Functions.SetInventory(self:getRaw().PlayerData.items, true)
+    local RawFrameworkPlayer = self:getRaw()
+    RawFrameworkPlayer.PlayerData.items[RawInventoryItem.slot].info.ammo = ammo
+    RawFrameworkPlayer.Functions.SetInventory(RawFrameworkPlayer.PlayerData.items, true)
 end
 
 function CQBServerFrameworkPlayer:addWeaponAmmo(weaponName, amount)
@@ -163,20 +165,22 @@ function CQBServerFrameworkPlayer:addWeaponAmmo(weaponName, amount)
         return
     end
 
-    local newAmmo = self:getRaw().PlayerData.items[RawInventoryItem.slot].info.ammo + amount
-    self:getRaw().PlayerData.items[RawInventoryItem.slot].info.ammo = newAmmo
-    self:getRaw().Functions.SetInventory(self:getRaw().PlayerData.items, true)
+    local RawFrameworkPlayer = self:getRaw()
+    local newAmmo = RawFrameworkPlayer.PlayerData.items[RawInventoryItem.slot].info.ammo + amount
+    RawFrameworkPlayer.PlayerData.items[RawInventoryItem.slot].info.ammo = newAmmo
+    RawFrameworkPlayer.Functions.SetInventory(RawFrameworkPlayer.PlayerData.items, true)
 end
 
 function CQBServerFrameworkPlayer:removeWeaponAmmo(weaponName, amount)
-    local RawInventoryItem = self:getRaw().Functions.GetItemByName(weaponName)
+    local RawFrameworkPlayer = self:getRaw()
+    local RawInventoryItem = RawFrameworkPlayer.Functions.GetItemByName(weaponName)
     if (not RawInventoryItem) then
         return
     end
 
-    local newAmmo = self:getRaw().PlayerData.items[RawInventoryItem.slot].info.ammo - amount
-    self:getRaw().PlayerData.items[RawInventoryItem.slot].info.ammo = newAmmo
-    self:getRaw().Functions.SetInventory(self:getRaw().PlayerData.items, true)
+    local newAmmo = RawFrameworkPlayer.PlayerData.items[RawInventoryItem.slot].info.ammo - amount
+    RawFrameworkPlayer.PlayerData.items[RawInventoryItem.slot].info.ammo = newAmmo
+    RawFrameworkPlayer.Functions.SetInventory(RawFrameworkPlayer.PlayerData.items, true)
 end
 
 function CQBServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
@@ -224,13 +228,14 @@ function CQBServerFrameworkPlayer:removeInventoryItem(itemName, amount)
 end
 
 function CQBServerFrameworkPlayer:setInventoryItemCount(itemName, count)
-    local RawInventoryItem = self:getRaw().Functions.GetItemByName(itemName)
+    local RawFrameworkPlayer = self:getRaw()
+    local RawInventoryItem = RawFrameworkPlayer.Functions.GetItemByName(itemName)
     if (not RawInventoryItem) then
         return
     end
 
-    self:getRaw().PlayerData.items[RawInventoryItem.slot].amount = count
-    self:getRaw().Functions.SetInventory(self:getRaw().PlayerData.items, true)
+    RawFrameworkPlayer.PlayerData.items[RawInventoryItem.slot].amount = count
+    RawFrameworkPlayer.Functions.SetInventory(RawFrameworkPlayer.PlayerData.items, true)
 end
 
 function CQBServerFrameworkPlayer:hasItem(itemName)

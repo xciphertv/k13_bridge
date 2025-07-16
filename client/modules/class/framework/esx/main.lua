@@ -13,16 +13,18 @@ function CESXClientFramework:constructor()
     end)
 
     RegisterNetEvent("esx:playerLoaded", function(xPlayer)
-        self:getRaw().PlayerData = xPlayer
-        while (not self:getRaw().PlayerData.ped or not DoesEntityExist(self:getRaw().PlayerData.ped)) do
+        local RawFramework = self:getRaw()
+        RawFramework.PlayerData = xPlayer
+        while (not RawFramework.PlayerData.ped or not DoesEntityExist(RawFramework.PlayerData.ped)) do
             Citizen.Wait(0)
         end
-        self:getRaw().PlayerLoaded = true
+        RawFramework.PlayerLoaded = true
     end)
 
     RegisterNetEvent("esx:onPlayerLogout", function()
-        self:getRaw().PlayerLoaded = false
-        self:getRaw().PlayerData = {}
+        local RawFramework = self:getRaw()
+        RawFramework.PlayerLoaded = false
+        RawFramework.PlayerData = {}
     end)
 
     return self
