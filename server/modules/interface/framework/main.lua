@@ -12,7 +12,7 @@ local IServerFramework = lib.class("IServerFramework")
 
 function IServerFramework:constructor(framework, Raw)
 	self.private.framework = framework
-	self.private.Raw = Raw or {}
+	self.private.Raw = Raw
 end
 
 function IServerFramework:getName()
