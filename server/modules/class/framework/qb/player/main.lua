@@ -169,70 +169,78 @@ function CQBServerFrameworkPlayer:removeWeaponAmmo(weaponName, amount)
 end
 
 function CQBServerFrameworkPlayer:setWeaponTintIndex(weaponName, tintIndex)
-    self:getRaw().setWeaponTint(weaponName, tintIndex)
 end
 
 function CQBServerFrameworkPlayer:getInventory()
     local PlayerInventory = {} ---@type IPlayerInventory
-    local RawInventory = self:getRaw().getInventory(true)
 
-    for itemName, RawInventoryItem in pairs(RawInventory) do
-        PlayerInventory[#PlayerInventory + 1] = {
-            name = itemName,
-            label = RawInventoryItem.label,
-            count = RawInventoryItem.count,
-            weight = RawInventoryItem.weight,
-        }
+    for slotId, RawInventoryItem in pairs(self:getRaw().PlayerData.items) do
+        if (RawInventoryItem.type == "item") then
+            PlayerInventory[#PlayerInventory + 1] = {
+                name = RawInventoryItem.name,
+                label = RawInventoryItem.label,
+                count = RawInventoryItem.amount,
+                weight = RawInventoryItem.weight
+            }
+        end
     end
 
     return PlayerInventory
 end
 
 function CQBServerFrameworkPlayer:getInventoryItem(itemName)
-    local RawInventoryItem = self:getRaw().getInventoryItem(itemName)
+    local RawInventoryItem = self:getRaw().Functions.GetItemByName(itemName)
 
     if (not RawInventoryItem) then
         return
     end
 
     return {
-        name = itemName,
+        name = RawInventoryItem.name,
         label = RawInventoryItem.label,
-        count = RawInventoryItem.count,
-        weight = RawInventoryItem.weight,
+        count = RawInventoryItem.amount,
+        weight = RawInventoryItem.weight
     } --[[@as IInventoryItem]]
 end
 
 function CQBServerFrameworkPlayer:addInventoryItem(itemName, amount)
-    self:getRaw().addInventoryItem(itemName, amount)
+    self:getRaw().Functions.AddItem(itemName, amount, false, false, "")
 end
 
 function CQBServerFrameworkPlayer:removeInventoryItem(itemName, amount)
-    self:getRaw().removeInventoryItem(itemName, amount)
+    self:getRaw().Functions.RemoveItem(itemName, amount, false, false, "")
 end
 
 function CQBServerFrameworkPlayer:setInventoryItemCount(itemName, count)
-    self:getRaw().setInventoryItem(itemName, count)
+    local RawInventoryItem = self:getRaw().Functions.GetItemByName(itemName)
+    if (not RawInventoryItem) then
+        return
+    end
+
+    self:getRaw().PlayerData.items[RawInventoryItem.slot].amount = count
+    self:getRaw().Functions.SetInventory(self:getRaw().PlayerData.items, true)
 end
 
 function CQBServerFrameworkPlayer:hasItem(itemName)
-    return self:getRaw().hasItem(itemName)
+    return self:getRaw().Functions.HasItem(itemName, 1)
 end
 
 function CQBServerFrameworkPlayer:getWeight()
-    return self:getRaw().getWeight()
+    local RawInventory = self:getRaw().PlayerData.items
+
+    return exports["qb-inventory"]:GetTotalWeight(RawInventory)
 end
 
 function CQBServerFrameworkPlayer:getMaxWeight()
-    return self:getRaw().getMaxWeight()
 end
 
 function CQBServerFrameworkPlayer:setMaxWeight(weight)
-    self:getRaw().setMaxWeight(weight)
 end
 
 function CQBServerFrameworkPlayer:canCarryItem(itemName, count)
-    return self:getRaw().canCarryItem(itemName, count)
+    local canCarry, reason = exports["qb-inventory"]:CanCarryItem(self:getRaw().PlayerData.source, itemName, count) ---@type boolean, string
+
+    return canCarry
 end
 
 return CQBServerFrameworkPlayer
