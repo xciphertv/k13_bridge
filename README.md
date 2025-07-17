@@ -40,7 +40,7 @@ After including `@k13_bridge/imports.lua`, the `Bridge` global is automatically 
 local Framework = Bridge.FrameworkFactory("esx") --[[@as IServerFramework]]
 
 local xPlayer = Framework:getPlayerFromId(source)
-if(xPlayer) then
+if (xPlayer) then
     print(xPlayer:getName())
 end
 ```
