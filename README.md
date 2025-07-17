@@ -28,7 +28,7 @@ It allows your scripts to interact with players, jobs, items, accounts, loadouts
    }
    ```
 
-4. Make sure [`ox_lib`](https://github.com/overextended/ox_lib) is installed — it's a **required dependency**.
+4. Make sure [`ox_lib`](https://github.com/CommunityOx/ox_lib) is installed — it's a **required dependency**.
 
 ---
 
@@ -37,10 +37,12 @@ It allows your scripts to interact with players, jobs, items, accounts, loadouts
 After including `@k13_bridge/imports.lua`, the `Bridge` global is automatically available in your script:
 
 ```lua
-local Framework = Bridge.FrameworkFactory("esx")
+local Framework = Bridge.FrameworkFactory("esx") --[[@as IServerFramework]]
 
 local xPlayer = Framework:getPlayerFromId(source)
-print(xPlayer:getName())
+if(xPlayer) then
+    print(xPlayer:getName())
+end
 ```
 
 > ⚠️ All methods throw `not implemented` errors by default unless implemented for the specific framework.
