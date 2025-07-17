@@ -45,7 +45,10 @@ function CQBServerFrameworkPlayer:getIdentifier()
 end
 
 function CQBServerFrameworkPlayer:getName()
-    return self:getRaw().PlayerData.charinfo.firstname .. " " .. self:getRaw().PlayerData.charinfo.lastname
+    local RawFrameworkPlayer = self:getRaw()
+
+    return ("%s %s"):format(RawFrameworkPlayer.PlayerData.charinfo.firstname,
+        RawFrameworkPlayer.PlayerData.charinfo.lastname)
 end
 
 function CQBServerFrameworkPlayer:setName(name)
@@ -62,16 +65,16 @@ function CQBServerFrameworkPlayer:setName(name)
 end
 
 function CQBServerFrameworkPlayer:getJob()
-    local Job = self:getRaw().PlayerData.job
+    local RawJob = self:getRaw().PlayerData.job
 
     return {
-        name = Job.name,
-        label = Job.label,
+        name = RawJob.name,
+        label = RawJob.label,
         Grade = {
-            id = Job.grade.level,
-            name = Job.grade.name,
-            label = Job.grade.name,
-            salary = tonumber(Job.payment) or 0
+            id = RawJob.grade.level,
+            name = RawJob.grade.name,
+            label = RawJob.grade.name,
+            salary = tonumber(RawJob.payment) or 0
         }
     } --[[@as IPlayerJob]]
 end
