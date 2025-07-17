@@ -60,12 +60,14 @@ function CESXClientFramework:getPlayerInventory()
     local RawInventory = self:getRaw().PlayerData.inventory
 
     for itemName, RawInventoryItem in pairs(RawInventory) do
-        PlayerInventory[#PlayerInventory + 1] = {
-            name = itemName,
-            label = RawInventoryItem.label,
-            count = RawInventoryItem.count,
-            weight = RawInventoryItem.weight,
-        }
+        if (RawInventory.count > 0) then
+            PlayerInventory[#PlayerInventory + 1] = {
+                name = itemName,
+                label = RawInventoryItem.label,
+                count = RawInventoryItem.count,
+                weight = RawInventoryItem.weight,
+            }
+        end
     end
 
     return PlayerInventory
