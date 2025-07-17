@@ -117,7 +117,7 @@ function CQBClientFramework:getPlayerDoB()
 end
 
 function CQBClientFramework:getPlayerHeight()
-    error("TO BE IMPLEMENTED")
+    return 80 -- Because fuck QB
 end
 
 function CQBClientFramework:getPlayerSex()
