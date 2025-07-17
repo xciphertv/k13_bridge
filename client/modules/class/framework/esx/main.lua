@@ -139,3 +139,5 @@ function CESXClientFramework:getAccountMoney(accountName)
 
     return 0
 end
+
+return CESXClientFramework

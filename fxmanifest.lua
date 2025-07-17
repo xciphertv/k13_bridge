@@ -7,9 +7,8 @@ lua54 "yes"
 shared_scripts {
 	"@ox_lib/init.lua"
 }
-client_scripts {
-	"/client/main.lua"
-}
-server_scripts {
-	"/server/main.lua"
+
+files {
+	"/shared/modules/**",
+	"/client/modules/**"
 }

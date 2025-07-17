@@ -158,15 +158,17 @@ end
 
 function CESXServerFrameworkPlayer:getInventory()
     local PlayerInventory = {} ---@type IPlayerInventory
-    local RawInventory = self:getRaw().getInventory(true)
+    local RawInventory = self:getRaw().getInventory(false)
 
-    for itemName, RawInventoryItem in pairs(RawInventory) do
-        PlayerInventory[#PlayerInventory + 1] = {
-            name = itemName,
-            label = RawInventoryItem.label,
-            count = RawInventoryItem.count,
-            weight = RawInventoryItem.weight,
-        }
+    for i, RawInventoryItem in ipairs(RawInventory) do
+        if (RawInventoryItem.count > 0) then
+            PlayerInventory[#PlayerInventory + 1] = {
+                name = RawInventoryItem.name,
+                label = RawInventoryItem.label,
+                count = RawInventoryItem.count,
+                weight = RawInventoryItem.weight,
+            }
+        end
     end
 
     return PlayerInventory
