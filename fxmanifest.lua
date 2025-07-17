@@ -12,3 +12,7 @@ files {
 	"/shared/modules/**",
 	"/client/modules/**"
 }
+
+dependencies {
+	"ox_lib"
+}
