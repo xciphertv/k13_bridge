@@ -6,6 +6,7 @@ local context <const> = IsDuplicityVersion() and "server" or "client" --[[@as Co
 local FrameworkCache = {} ---@type table<Framework, IClientFramework|IServerFramework>
 
 ---@param framework Framework
+---@return IClientFramework|IServerFramework
 return function(framework)
 	if (FrameworkCache[framework]) then
 		return FrameworkCache[framework]
