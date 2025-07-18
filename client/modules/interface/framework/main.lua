@@ -16,6 +16,8 @@
 ---@field getPlayerHeight fun(self:IClientFramework):number
 ---@field getPlayerSex fun(self:IClientFramework):PlayerSex
 ---@field getAccountMoney fun(self:IClientFramework, accountName:string):number
+---@field getVehicleProperties fun(self:IClientFramework, vehicle:number):VehicleProperties?
+---@field setVehicleProperties fun(self:IClientFramework, vehicle:number, VehicleProperties:JSON<VehicleProperties>|VehicleProperties, fixVehicle:boolean):boolean
 local IClientFramework = lib.class("IClientFramework")
 
 function IClientFramework:constructor(framework, Raw)
@@ -81,6 +83,16 @@ end
 
 function IClientFramework:getAccountMoney(accountName)
     error("getAccountMoney is not implemented in " .. self:getName())
+end
+
+function IClientFramework:getVehicleProperties(vehicle)
+    return lib.getVehicleProperties(vehicle)
+end
+
+function IClientFramework:setVehicleProperties(vehicle, VehicleProperties, fixVehicle)
+    local DecodedVehicleProperties = type(VehicleProperties) == "string" and json.decode(VehicleProperties) or
+        VehicleProperties --[[@as VehicleProperties]]
+    return lib.setVehicleProperties(vehicle, DecodedVehicleProperties, fixVehicle)
 end
 
 return IClientFramework

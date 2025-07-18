@@ -140,8 +140,8 @@ This enables autocompletion and type checking for all framework interfaces.
 
 ---@alias IPlayerLoadout ILoadoutItem[]
 ---@alias IPlayerInventory IInventoryItem[]
----@alias PlayerSex "male" | "female"
----@alias VehicleType "car" | "boat" | "heli" | "plane" | "bike"
+---@alias PlayerSex "male"|"female"
+---@alias VehicleType "car"|"boat"|"heli"|"plane"|"bike"
 ```
 
 ### 🔧 Generics
