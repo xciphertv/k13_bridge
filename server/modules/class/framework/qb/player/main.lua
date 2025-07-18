@@ -267,6 +267,8 @@ function CQBServerFrameworkPlayer:canCarryItem(itemName, count)
 end
 
 function CQBServerFrameworkPlayer:getOwnedVehicles()
+    ---@TODO: Find solution for vehicle type. Apparently QB does not store that.
+    ---@TODO: Validate vehicle properties
     local PlayerOwnedVehicles = {} ---@type IPlayerOwnedVehicles
 
     local Result = MySQL.query.await(
