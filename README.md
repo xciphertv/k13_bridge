@@ -12,7 +12,7 @@ It allows your scripts to interact with players, jobs, items, accounts, loadouts
 
 ---
 
-> ## ⚠️ **WARNING
+> ## ⚠️ WARNING
 > This is **not a finished resource**. It currently serves as a **blueprint** and is subject to major changes.  
 > - Many **framework functions are not fully/correctly implemented** yet.  
 > - **Data structures may change significantly** to support broader compatibility across frameworks.  
