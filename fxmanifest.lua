@@ -2,11 +2,7 @@ fx_version "cerulean"
 game "gta5"
 author "Kenshin13"
 version "0.0.1"
-lua54 "yes"
-
-shared_scripts {
-	"@ox_lib/init.lua"
-}
+description "A modular, object-oriented bridge for FiveM frameworks."
 
 files {
 	"/shared/modules/**",
@@ -14,5 +10,6 @@ files {
 }
 
 dependencies {
+	"oxmysql",
 	"ox_lib"
 }

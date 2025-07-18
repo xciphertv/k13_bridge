@@ -22,13 +22,16 @@ It allows your scripts to interact with players, jobs, items, accounts, loadouts
 3. In your **own resource's `fxmanifest.lua`**, include:
 
    ```lua
+   lua54 "yes"
+   server_script "@oxmysql/lib/MySQL.lua"
+
    shared_scripts {
        "@ox_lib/init.lua",
        "@k13_bridge/imports.lua"
    }
    ```
 
-4. Make sure [`ox_lib`](https://github.com/CommunityOx/ox_lib) is installed — it's a **required dependency**.
+4. Make sure [`ox_lib`](https://github.com/CommunityOx/ox_lib) and [`oxmysql`](https://github.com/CommunityOx/oxmysql) are installed — they are **required dependencies**.
 
 ---
 
