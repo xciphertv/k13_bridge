@@ -54,11 +54,12 @@ end
 
 ## 🧠 Developer Tip: Type Annotations
 
-For full type support in your **Lua Language Server**, it's **highly recommended** to mark the bridge resource as a library in your workspace settings (e.g. `settings.json`):
+For full type support in your **Lua Language Server**, it's **highly recommended** to mark the bridge resource and ox_lib as a library in your workspace settings (e.g. `settings.json`):
 
 ```json
 "Lua.workspace.library": [
-    "resourcesPath\\k13_bridge"
+    "resourcesPath\\k13_bridge",
+    "resourcesPath\\ox_lib"
 ]
 ```
 
