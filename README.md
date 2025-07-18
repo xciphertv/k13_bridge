@@ -119,11 +119,38 @@ This enables autocompletion and type checking for all framework interfaces.
 ---@field ammo number
 ---@field tintIndex number
 
+---@class IVehicle
+---@field plate string
+---@field type VehicleType
+---@field VehicleProperties JSON<VehicleProperties>
+
+---@class IOwnedVehicle : IVehicle
+---@field owner string
+
 ---@alias IPlayerLoadout ILoadoutItem[]
 ---@alias IPlayerInventory IInventoryItem[]
 ---@alias PlayerSex "male" | "female"
+---@alias VehicleType "car" | "boat" | "heli" | "plane" | "bike"
 ```
 
+### 🔧 Generics
+```lua
+---@generic T
+---@alias JSON<T> string
+```
+The JSON<T> generic represents a JSON-encoded string that conforms to the structure of T.
+#### Example:
+```lua
+---@class VehicleProperties
+---@field color string
+---@field engineHealth number
+
+---@type JSON<VehicleProperties>
+local Data = '{"color":"black","engineHealth":950.0}'
+
+local DecodedData = json.decode(Data) --[[@as VehicleProperties]]
+print(DecodedData.color)
+```
 ---
 
 ## 🔌 Framework Support Status
