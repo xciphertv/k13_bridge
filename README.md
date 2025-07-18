@@ -14,7 +14,7 @@ It allows your scripts to interact with players, jobs, items, accounts, loadouts
 
 ## 📦 Installation
 
-1. **Place the bridge** (e.g. `k13_bridge`) in your `resources` folder.
+1. **Place the bridge** in your `resources` folder.
 
 2. You **do not need to start** the bridge in `server.cfg`.  
    It is **not a standalone resource**, but a shared module.
