@@ -23,8 +23,9 @@ It allows your scripts to interact with players, jobs, items, accounts, loadouts
 
    ```lua
    lua54 "yes"
-   server_script "@oxmysql/lib/MySQL.lua"
 
+   server_script "@oxmysql/lib/MySQL.lua"
+   
    shared_scripts {
        "@ox_lib/init.lua",
        "@k13_bridge/imports.lua"
