@@ -31,6 +31,7 @@
 ---@field getMaxWeight fun(self:CESXServerFrameworkPlayer):number
 ---@field setMaxWeight fun(self:CESXServerFrameworkPlayer, weight:number)
 ---@field canCarryItem fun(self:CESXServerFrameworkPlayer, itemName:string, count:number):boolean
+---@field getOwnedVehicles fun(self:CESXServerFrameworkPlayer):IPlayerOwnedVehicles
 local CESXServerFrameworkPlayer = lib.class("CESXServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -219,6 +220,29 @@ end
 
 function CESXServerFrameworkPlayer:canCarryItem(itemName, count)
     return self:getRaw().canCarryItem(itemName, count)
+end
+
+function CESXServerFrameworkPlayer:getOwnedVehicles()
+    ---@TODO: Validate vehicle type
+    ---@TODO: Validate vehicle properties
+
+    local PlayerOwnedVehicles = {} ---@type IPlayerOwnedVehicles
+
+    local Result = MySQL.query.await(
+        "SELECT `plate`, `type`, `vehicle`, `owner` FROM `owned_vehicles` WHERE `owner` = ?", { self:getIdentifier() })
+
+    for i = 1, #Result do
+        local RawVehicle = Result[i]
+
+        PlayerOwnedVehicles[i] = {
+            plate = RawVehicle.plate,
+            type = RawVehicle.type,
+            VehicleProperties = RawVehicle.vehicle,
+            owner = RawVehicle.owner
+        }
+    end
+
+    return PlayerOwnedVehicles
 end
 
 return CESXServerFrameworkPlayer

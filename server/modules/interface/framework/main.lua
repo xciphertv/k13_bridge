@@ -49,3 +49,24 @@ return IServerFramework
 ---@field name string
 ---@field label string
 ---@field weight number
+
+---@class IInventoryItem:IItem
+---@field count number
+
+---@class ILoadoutItem
+---@field name string
+---@field label string
+---@field ammo number
+---@field tintIndex number
+
+---@class IVehicle
+---@field plate string
+---@field type VehicleType
+---@field VehicleProperties JSON<VehicleProperties>
+
+---@class IOwnedVehicle:IVehicle
+---@field owner string
+
+---@alias VehicleType "car"|"boat"|"heli"|"plane"|"bike"
+---@generic T
+---@alias JSON<T> string

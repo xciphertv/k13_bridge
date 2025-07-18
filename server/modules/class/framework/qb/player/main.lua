@@ -31,6 +31,7 @@
 ---@field getMaxWeight fun(self:CQBServerFrameworkPlayer):number
 ---@field setMaxWeight fun(self:CQBServerFrameworkPlayer, weight:number)
 ---@field canCarryItem fun(self:CQBServerFrameworkPlayer, itemName:string, count:number):boolean
+---@field getOwnedVehicles fun(self:CQBServerFrameworkPlayer):IPlayerOwnedVehicles
 local CQBServerFrameworkPlayer = lib.class("CQBServerFrameworkPlayer",
     require("server.modules.interface.framework.player.main"))
 
@@ -263,6 +264,26 @@ function CQBServerFrameworkPlayer:canCarryItem(itemName, count)
     local canCarry, reason = exports["qb-inventory"]:CanCarryItem(self:getRaw().PlayerData.source, itemName, count) ---@type boolean, string
 
     return canCarry
+end
+
+function CQBServerFrameworkPlayer:getOwnedVehicles()
+    local PlayerOwnedVehicles = {} ---@type IPlayerOwnedVehicles
+
+    local Result = MySQL.query.await(
+        "SELECT `plate`, `mods`, `citizenid` FROM `player_vehicles` WHERE `citizenid`= ?", { self:getIdentifier() })
+
+    for i = 1, #Result do
+        local RawVehicle = Result[i]
+
+        PlayerOwnedVehicles[i] = {
+            plate = RawVehicle.plate,
+            type = "car",
+            VehicleProperties = RawVehicle.mods,
+            owner = RawVehicle.citizenid
+        }
+    end
+
+    return PlayerOwnedVehicles
 end
 
 return CQBServerFrameworkPlayer

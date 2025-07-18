@@ -32,6 +32,7 @@
 ---@field getMaxWeight fun(self:IServerFrameworkPlayer):number
 ---@field setMaxWeight fun(self:IServerFrameworkPlayer, weight:number)
 ---@field canCarryItem fun(self:IServerFrameworkPlayer, itemName:string, count:number):boolean
+---@field getOwnedVehicles fun(self:IServerFrameworkPlayer):IPlayerOwnedVehicles
 local IServerFrameworkPlayer = lib.class("IServerFrameworkPlayer")
 
 function IServerFrameworkPlayer:constructor(Raw)
@@ -162,6 +163,10 @@ function IServerFrameworkPlayer:canCarryItem(itemName, count)
     error("IServerFrameworkPlayer:canCarryItem is not implemented.")
 end
 
+function IServerFrameworkPlayer:getOwnedVehicles()
+    error("IServerFrameworkPlayer:getOwnedVehicles is not implemented.")
+end
+
 return IServerFrameworkPlayer
 
 ---@class IPlayerJob
@@ -169,15 +174,6 @@ return IServerFrameworkPlayer
 ---@field label string
 ---@field Grade {id:number, name:string, label:string, salary:number}
 
----@class ILoadoutItem
----@field name string
----@field label string
----@field ammo number
----@field tintIndex number
-
 ---@alias IPlayerLoadout ILoadoutItem[]
-
----@class IInventoryItem:IItem
----@field count number
-
 ---@alias IPlayerInventory IInventoryItem[]
+---@alias IPlayerOwnedVehicles IOwnedVehicle[]
