@@ -57,16 +57,16 @@ end
 
 function CESXClientFramework:getPlayerInventory()
     local PlayerInventory = {} ---@type IPlayerInventory
-    local RawInventory = self:getRaw().PlayerData.inventory
+    local RawInventory = self:getRaw().PlayerData and self:getRaw().PlayerData.inventory or {}
 
-    for itemName, RawInventoryItem in pairs(RawInventory) do
-        if (RawInventory.count > 0) then
-            PlayerInventory[#PlayerInventory + 1] = {
-                name = itemName,
+    for _, RawInventoryItem in pairs(RawInventory) do
+        if (RawInventoryItem.count > 0) then
+            table.insert(PlayerInventory, {
+                name = RawInventoryItem.name,
                 label = RawInventoryItem.label,
                 count = RawInventoryItem.count,
                 weight = RawInventoryItem.weight,
-            }
+            })
         end
     end
 
