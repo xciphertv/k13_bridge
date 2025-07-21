@@ -6,7 +6,7 @@ This bridge provides a unified and extensible API layer for both **server-side**
 
 - ✅ ESX  
 - ✅ QBCore  
-- 🔜 vRP *(planned)*  
+- 🔜 Ox *(planned)*  
 
 It allows your scripts to interact with players, jobs, items, accounts, loadouts, etc., using a **consistent interface**, regardless of the underlying framework.
 
