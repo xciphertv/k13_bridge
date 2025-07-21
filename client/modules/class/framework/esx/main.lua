@@ -57,21 +57,31 @@ end
 
 function CESXClientFramework:getPlayerInventory()
     local PlayerInventory = {} ---@type IPlayerInventory
-    local RawInventory = self:getRaw().PlayerData.inventory
 
-    for itemName, RawInventoryItem in pairs(RawInventory) do
-        if (RawInventory.count > 0) then
-            PlayerInventory[#PlayerInventory + 1] = {
-                name = itemName,
-                label = RawInventoryItem.label,
-                count = RawInventoryItem.count,
-                weight = RawInventoryItem.weight,
-            }
+    -- Safely get inventory data
+    local RawData = self:getRaw().PlayerData
+    if not RawData or not RawData.inventory then
+        return PlayerInventory
+    end
+
+    local RawInventory = RawData.inventory
+
+    for k, v in pairs(RawInventory) do
+        -- Name: Prefer explicit item name if present, else use table key
+        local name = v.name or k
+        if v.count and v.count > 0 then
+            table.insert(PlayerInventory, {
+                name = name,
+                label = v.label or name,
+                count = v.count,
+                weight = v.weight or 0,
+            })
         end
     end
 
     return PlayerInventory
 end
+
 
 function CESXClientFramework:getPlayerJob()
     local RawJob = self:getRaw().PlayerData.job
